@@ -21,3 +21,6 @@
 
 # Node_Modules
 */node_modules
+
+*.classpath
+*.project
