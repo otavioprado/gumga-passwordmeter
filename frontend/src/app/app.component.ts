@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
   constructor(private _appService : AppService, @Inject(DOCUMENT) private document: any){
     this.result = {};
-    this.progressValue = 0;
+    this.progressValue;
   }
 
   ngOnInit(): void {
@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
       success => {
         console.log(success);
         this.result = success;
+        this.progressValue = success.score;
       },
       error => {
         console.log(error);
