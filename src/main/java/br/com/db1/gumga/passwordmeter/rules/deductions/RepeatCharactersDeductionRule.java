@@ -1,37 +1,33 @@
 package br.com.db1.gumga.passwordmeter.rules.deductions;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.util.StringUtils;
-
 import br.com.db1.gumga.passwordmeter.rules.commons.Rule;
 
 public class RepeatCharactersDeductionRule implements Rule {
 
 	@Override
 	public Long check(String password) {
-		Long total = 0L;
-		List<String> alredyChecked = new ArrayList<>();
-		char[] passwordArray = password.toCharArray();
-		
-		for (int i = 0; i < password.length(); i++) {
-			String character = String.valueOf(passwordArray[i]);
-			
-			if(!alredyChecked.contains(character)) {
-				alredyChecked.add(character);
-			} else {
-				continue;
+		String passwordValidate = password.replaceAll(" ", "");
+		Double repeat = 0.0;
+		Long qtdRepeat = 0L;
+		Double length = Double.valueOf(passwordValidate.length());
+
+		for (int firstLoop = 0; firstLoop < length; firstLoop++) {
+			boolean existChar = false;
+			for (int secondLoop = 0; secondLoop < length; secondLoop++) {
+				if (passwordValidate.charAt(firstLoop) == passwordValidate.charAt(secondLoop)
+						&& firstLoop != secondLoop) {
+					existChar = true;
+					repeat += Math.abs(length / (secondLoop - firstLoop));
+				}
 			}
-			
-			int count = StringUtils.countOccurrencesOf(password, character);
-			
-			if(count > 1) {
-				total += count;
+			if (existChar) {
+				qtdRepeat++;
+				Double unique = length - qtdRepeat;
+				repeat = unique > 0 ? Math.ceil(repeat / unique) : Math.ceil(repeat);
 			}
 		}
 
-		return total;
+		return Long.valueOf(Math.negateExact(repeat.intValue()));
 	}
 
 }
