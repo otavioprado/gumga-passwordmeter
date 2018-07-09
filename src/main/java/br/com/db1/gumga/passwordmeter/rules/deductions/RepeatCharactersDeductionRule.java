@@ -34,7 +34,7 @@ public class RepeatCharactersDeductionRule implements Rule {
 
 		Long bonus = Long.valueOf(repeat.intValue());
 
-		return new Rate(bonus / 3, Math.negateExact(bonus), false);
+		return new Rate(qtdRepeat, Math.negateExact(bonus), false);
 	}
 
 }

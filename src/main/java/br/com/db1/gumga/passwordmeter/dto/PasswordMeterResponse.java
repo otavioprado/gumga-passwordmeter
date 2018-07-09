@@ -7,11 +7,11 @@ import br.com.db1.gumga.passwordmeter.enums.LevelScore;
 public class PasswordMeterResponse {
 	private Long score;
 	private LevelScore levelScore;
-	
+
 	public PasswordMeterResponse() {
-		
+
 	}
-	
+
 	public PasswordMeterResponse(Long score, LevelScore levelScore) {
 		this.score = score;
 		this.levelScore = levelScore;

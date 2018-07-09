@@ -8,7 +8,7 @@ import br.com.db1.gumga.passwordmeter.rules.commons.Rule;
 /**
  * Uses the ASC2 table to know what is the next character
  * 
- * @author Otávio Prado
+ * @author Otavio Prado
  */
 public abstract class AbstractSequentialDeductionRule implements Rule {
 	public Rate check(String password) {

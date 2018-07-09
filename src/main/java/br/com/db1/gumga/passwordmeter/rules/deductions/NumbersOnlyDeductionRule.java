@@ -20,6 +20,8 @@ public class NumbersOnlyDeductionRule implements Rule {
 		Long passwordLength = Long.valueOf(password.length());
 		if (passwordLength == count) {
 			bonus = Math.negateExact(passwordLength);
+		} else {
+			count = 0;
 		}
 
 		return new Rate(count, bonus, false);

@@ -17,7 +17,6 @@ public class PasswordMeterController {
 
 	@PostMapping(value = "/api/v1/password-meter/check")
 	public PasswordMeterResponse checkPassword(@RequestBody PasswordMeterRequest request) {
-		PasswordMeterResponse response = passwordMeterService.checkPassword(request.getPassword());
-		return response;
+		return passwordMeterService.checkPassword(request.getPassword());
 	}
 }
