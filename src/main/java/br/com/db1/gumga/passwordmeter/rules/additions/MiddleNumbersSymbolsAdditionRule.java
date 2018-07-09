@@ -4,9 +4,9 @@ import java.util.regex.Pattern;
 
 import br.com.db1.gumga.passwordmeter.rules.commons.Rule;
 
-public class MiddleNumbersSymbolsRule implements Rule {
+public class MiddleNumbersSymbolsAdditionRule implements Rule {
 
-	public static final String REGEX_LETTERS = "[A-z]";
+	private static final String REGEX_LETTERS = "[A-z]";
 	
 	@Override
 	public Long check(String password) {

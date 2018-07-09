@@ -11,12 +11,12 @@ import br.com.db1.gumga.passwordmeter.service.PasswordMeterService;
 
 @RestController
 public class PasswordMeterController {
-	
-	@Autowired
-    private PasswordMeterService passwordMeterService;
 
-    @PostMapping(value = "/api/v1/password-meter/check")
-    public PasswordMeterResponse checkPassword(@RequestBody PasswordMeterRequest request) {
-        return passwordMeterService.checkPassword(request.getPassword());
-    }
+	@Autowired
+	private PasswordMeterService passwordMeterService;
+
+	@PostMapping(value = "/api/v1/password-meter/check")
+	public PasswordMeterResponse checkPassword(@RequestBody PasswordMeterRequest request) {
+		return passwordMeterService.checkPassword(request.getPassword());
+	}
 }

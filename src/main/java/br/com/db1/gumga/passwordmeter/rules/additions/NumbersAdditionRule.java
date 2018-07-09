@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 import br.com.db1.gumga.passwordmeter.rules.commons.Rule;
 
-public class NumbersRule implements Rule {
+public class NumbersAdditionRule implements Rule {
 	
 	private static final String REGEX_NUMBER = "[0-9]";
 	
