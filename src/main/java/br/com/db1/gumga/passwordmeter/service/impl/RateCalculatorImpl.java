@@ -64,6 +64,8 @@ public class RateCalculatorImpl implements RateCalculatorService {
 			totalBonus += rate.getBonus();
 		}
 
-		return totalBonus + (requirementCount * 2);
+		totalBonus = totalBonus + (requirementCount * 2);
+		
+		return totalBonus > 100 ? 100 : totalBonus;
 	}
 }

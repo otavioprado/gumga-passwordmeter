@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
 
     this._appService.checkPassword(this.password).subscribe(
       success => {
+        console.log(success);
         this.result = success;
       },
       error => {
