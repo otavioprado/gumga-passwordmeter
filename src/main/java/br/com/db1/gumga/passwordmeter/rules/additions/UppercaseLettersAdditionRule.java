@@ -1,5 +1,6 @@
 package br.com.db1.gumga.passwordmeter.rules.additions;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import br.com.db1.gumga.passwordmeter.rules.commons.Rate;
@@ -11,6 +12,7 @@ public class UppercaseLettersAdditionRule implements Rule {
 
 	@Override
 	public Rate check(String password) {
+		Objects.requireNonNull(password);
 		
 		long count = Pattern.compile(REGEX_UPPERCASE).matcher(password).results().count();
 		long bonus = 0L;

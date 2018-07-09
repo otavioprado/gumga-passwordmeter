@@ -30,7 +30,7 @@ public class RateCalculatorImpl implements RateCalculatorService {
 
 	private static final List<Rule> RULES = new ArrayList<>();
 
-	private void setup() {
+	static {
 		RULES.addAll(Arrays.asList(
 				new LowercaseLettersAdditionRule(),
 				new MiddleNumbersSymbolsAdditionRule(),
@@ -51,10 +51,18 @@ public class RateCalculatorImpl implements RateCalculatorService {
 	}
 	
 	public Long calculate(String password) {
-		setup();
-
-		long requirementCount =  RULES.stream().map(c -> c.check(password)).filter(Rate::getRequirement).count();
-		long totalBonus =  RULES.stream().map(c -> c.check(password)).mapToLong(Rate::getBonus).sum();
+		long requirementCount = 0;
+		long totalBonus = 0;
+		
+		for (Rule rule : RULES) {
+			Rate rate = rule.check(password);
+			
+			if(rate.getRequirement()) {
+				requirementCount++;
+			}
+			
+			totalBonus += rate.getBonus();
+		}
 
 		return totalBonus + (requirementCount * 2);
 	}

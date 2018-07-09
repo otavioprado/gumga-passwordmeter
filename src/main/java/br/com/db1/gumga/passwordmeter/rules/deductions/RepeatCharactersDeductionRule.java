@@ -1,5 +1,7 @@
 package br.com.db1.gumga.passwordmeter.rules.deductions;
 
+import java.util.Objects;
+
 import br.com.db1.gumga.passwordmeter.rules.commons.Rate;
 import br.com.db1.gumga.passwordmeter.rules.commons.Rule;
 
@@ -7,6 +9,8 @@ public class RepeatCharactersDeductionRule implements Rule {
 
 	@Override
 	public Rate check(String password) {
+		Objects.requireNonNull(password);
+		
 		String passwordValidate = password.replaceAll(" ", "");
 		Double repeat = 0.0;
 		Long qtdRepeat = 0L;

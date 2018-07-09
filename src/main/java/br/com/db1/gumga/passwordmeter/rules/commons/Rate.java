@@ -1,9 +1,9 @@
 package br.com.db1.gumga.passwordmeter.rules.commons;
 
 public class Rate {
-	private Long count;
-	private Long bonus;
-	private Boolean requirement;
+	private Long count = 0l;
+	private Long bonus = 0l;
+	private Boolean requirement = false;
 	
 	public Rate() {
 		

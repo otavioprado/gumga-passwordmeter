@@ -1,5 +1,6 @@
 package br.com.db1.gumga.passwordmeter.rules.additions;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import br.com.db1.gumga.passwordmeter.rules.commons.Rate;
@@ -11,6 +12,8 @@ public class NumbersAdditionRule implements Rule {
 	
 	@Override
     public Rate check(String password) {
+		Objects.requireNonNull(password);
+		
 		long countNumbers = Pattern.compile(REGEX_NUMBER).matcher(password).results().count();
 		long countNotNumbers = password.length() - countNumbers;
 		
