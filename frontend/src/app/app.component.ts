@@ -10,6 +10,7 @@ import { DOCUMENT } from '@angular/common';
 })
 export class AppComponent implements OnInit {
 
+  password: string;
   result: any;
   progressValue: number;
 
@@ -24,7 +25,9 @@ export class AppComponent implements OnInit {
   }
 
   calculatePasswordSecurity() {
-    this._appService.checkPassword("").subscribe(
+    console.log(this.password);
+
+    this._appService.checkPassword(this.password).subscribe(
       success => {
         this.result = success;
       },

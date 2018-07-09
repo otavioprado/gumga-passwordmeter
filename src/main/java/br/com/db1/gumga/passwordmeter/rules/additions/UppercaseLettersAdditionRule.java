@@ -2,6 +2,7 @@ package br.com.db1.gumga.passwordmeter.rules.additions;
 
 import java.util.regex.Pattern;
 
+import br.com.db1.gumga.passwordmeter.rules.commons.Rate;
 import br.com.db1.gumga.passwordmeter.rules.commons.Rule;
 
 public class UppercaseLettersAdditionRule implements Rule {
@@ -9,15 +10,16 @@ public class UppercaseLettersAdditionRule implements Rule {
 	private static final String REGEX_UPPERCASE = "[A-Z]";
 
 	@Override
-	public Long check(String password) {
+	public Rate check(String password) {
 		
 		long count = Pattern.compile(REGEX_UPPERCASE).matcher(password).results().count();
+		long bonus = 0L;
 		
-		if(password.length() > 0) {
-			return (password.length() - count) * 2;
+		if(count > 0) {
+			bonus = (password.length() - count) * 2;
 		}
 		
-		return 0L;
+		return new Rate(count, bonus, count > 0);
 	}
 
 }

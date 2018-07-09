@@ -2,20 +2,22 @@ package br.com.db1.gumga.passwordmeter.rules.additions;
 
 import java.util.regex.Pattern;
 
+import br.com.db1.gumga.passwordmeter.rules.commons.Rate;
 import br.com.db1.gumga.passwordmeter.rules.commons.Rule;
 
 public class LowercaseLettersAdditionRule implements Rule {
 	private static final String REGEX_LOWERCASE = "[a-z]";
 
 	@Override
-	public Long check(String password) {
+	public Rate check(String password) {
 		
 		long count = Pattern.compile(REGEX_LOWERCASE).matcher(password).results().count();
+		Long bonus = 0L;
 		
-		if(password.length() > 0) {
-			return (password.length() - count) * 2;
+		if(count > 0) {
+			bonus = (password.length() - count) * 2;
 		}
 		
-		return 0L;
+		return new Rate(count, bonus, bonus > 0);
 	}
 }

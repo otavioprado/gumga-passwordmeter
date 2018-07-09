@@ -1,5 +1,6 @@
 package br.com.db1.gumga.passwordmeter.rules.deductions;
 
+import br.com.db1.gumga.passwordmeter.rules.commons.Rate;
 import br.com.db1.gumga.passwordmeter.rules.commons.Rule;
 
 /**
@@ -8,11 +9,11 @@ import br.com.db1.gumga.passwordmeter.rules.commons.Rule;
  * @author Otávio Prado
  */
 public abstract class AbstractSequentialDeductionRule implements Rule {
-	public Long check(String password) {
+	public Rate check(String password) {
 
 		char[] charArrayPassword = password.toCharArray();
 
-		Long total = 0L;
+		Long count = 0L;
 
 		for (int i = 0; i < charArrayPassword.length - 2; i++) {
 			Character currentCharacter = charArrayPassword[i];
@@ -24,10 +25,10 @@ public abstract class AbstractSequentialDeductionRule implements Rule {
 
 			if (String.valueOf(nextInAsc2).equalsIgnoreCase(String.valueOf(nextInPassword))
 					&& (String.valueOf(nextToNextInAsc2).equalsIgnoreCase(String.valueOf(nextToNextInPassword)))) {
-				total += 1;
+				count += 1;
 			}
 		}
 
-		return Math.negateExact(total * 3);
+		return new Rate(count, Math.negateExact(count * 3), false);
 	}
 }
