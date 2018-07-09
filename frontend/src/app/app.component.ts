@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     document.getElementById('result').style.pointerEvents = 'none';
+    document.getElementById('percentage').style.pointerEvents = 'none';
   }
 
   calculatePasswordSecurity() {

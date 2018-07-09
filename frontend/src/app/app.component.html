@@ -10,7 +10,7 @@
 
     <div fxLayout="row" fxLayoutAlign="space-around">
         <mat-card fxFlex="50" fxFlex.xs="90">
-            <mat-card-title fxLayoutAlign="center center">Avaliador de segurança de senha</mat-card-title>
+            <mat-card-title>Avaliador de segurança de senha</mat-card-title>
             
             <div class="content">
                 <mat-card-content>
@@ -23,7 +23,11 @@
                 
                 <mat-card-actions>
                     <div fxFlexOffset="2" fxLayout="row">
-                        <span fxFlex="55px" style="padding-top: 8px;"><b> {{ result.score ? result.score : 0  | number:'1.0' }}%   </b></span> 
+                        <mat-chip-list [class]="result.levelScore">
+                            <mat-chip id="percentage" style="margin: 4px 4px 4px 0px">
+                                <span fxFlex="55px"><b> {{ result.score ? result.score : 0  | number:'1.0' }}%   </b></span> 
+                            </mat-chip>
+                        </mat-chip-list>
                         
                         <mat-chip-list [class]="result.levelScore">
                             <mat-chip id="result"><b>{{ result.description ? result.description : 'Muito curta' }}</b></mat-chip>

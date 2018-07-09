@@ -11,7 +11,9 @@ export class AppService {
 
   checkPassword(password: string): Observable<any> {
     var dns = window.location.origin;
-    const url = dns + '/api/v1/password-meter/check';
+    var host = window.location.hostname;
+    const url = "http://" + host + ':8080' + '/api/v1/password-meter/check';
+    console.log(url);
     return this._httpClient.post<any>(url, { "password" : password });
   }
 }
